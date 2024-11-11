@@ -88,6 +88,22 @@
                                 <nil key="textColor"/>
                                 <color key="highlightedColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </label>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CeD-tM-yqf">
+                                <rect key="frame" x="66" y="319" width="270" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
+                                <connections>
+                                    <action selector="ipAddressTextFieldEditingDidEnd:" destination="vXZ-lx-hvc" eventType="editingDidEnd" id="hu5-51-mRz"/>
+                                </connections>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Enter IP Address" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vWX-8P-99t">
+                                <rect key="frame" x="138" y="361" width="126" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -122,6 +138,7 @@
                     <connections>
                         <outlet property="downArrow" destination="xyW-Em-uOE" id="InM-Bs-xaV"/>
                         <outlet property="dsidLabel" destination="yA7-nd-seT" id="pMu-dh-28l"/>
+                        <outlet property="ipAddressTextField" destination="CeD-tM-yqf" id="m1R-4p-d76"/>
                         <outlet property="largeMotionMagnitude" destination="hUu-DN-Kwe" id="oWd-Qb-Qtq"/>
                         <outlet property="leftArrow" destination="YSY-pP-JYh" id="tST-zn-Nl1"/>
                         <outlet property="rightArrow" destination="yvq-UU-Czy" id="RQ7-Cu-A6a"/>
@@ -130,7 +147,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="324" y="264.91754122938534"/>
+            <point key="canvasLocation" x="323.88059701492534" y="264.30205949656749"/>
         </scene>
     </scenes>
     <resources>

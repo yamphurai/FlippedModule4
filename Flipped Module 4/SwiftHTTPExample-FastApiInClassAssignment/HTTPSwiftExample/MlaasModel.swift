@@ -34,7 +34,13 @@ class MlaasModel: NSObject, URLSessionDelegate{
     private let operationQueue = OperationQueue()  //used to manage tasks
     
     // default ip, if you are unsure try: ifconfig |grep "inet " to see what your public facing IP address is
-    var server_ip = "10.9.166.123" //default ip
+    //default ip is 192.168.1.210
+    var server_ip: String = "192.168.1.210" {
+        didSet {
+            print("Server IP updated to: \(server_ip)")
+        }
+    }
+    
     
     // create a delegate for using the protocol i.e. to communicate with the view controller
     var delegate:ClientDelegate?
@@ -269,4 +275,5 @@ class MlaasModel: NSObject, URLSessionDelegate{
     }
 
 }
+
 

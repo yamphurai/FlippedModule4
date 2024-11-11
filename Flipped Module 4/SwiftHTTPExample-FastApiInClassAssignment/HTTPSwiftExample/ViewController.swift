@@ -10,7 +10,7 @@
 import UIKit
 import CoreMotion
 
-class ViewController: UIViewController, ClientDelegate {
+class ViewController: UIViewController, ClientDelegate, UITextFieldDelegate {
     
     // MARK: Class Properties
     
@@ -39,6 +39,9 @@ class ViewController: UIViewController, ClientDelegate {
     @IBOutlet weak var leftArrow: UILabel!
     @IBOutlet weak var largeMotionMagnitude: UIProgressView!
     
+    //Part 2
+    @IBOutlet weak var ipAddressTextField: UITextField! // Add an IBOutlet for the text field
+    
     // MARK: Class Properties with Observers
     
     //enumeration with different stages of calibration
@@ -61,7 +64,30 @@ class ViewController: UIViewController, ClientDelegate {
     @IBAction func magnitudeChanged(_ sender: UISlider) {
         self.magThreshold = Double(sender.value)
     }
-       
+    
+    
+    //Part 2: update the default IP address with one that the user enters
+    @IBAction func ipAddressTextFieldEditingDidEnd(_ sender: UITextField) {
+        
+        //if the new IP is the one that the user enters (checks if not empty)
+        if let newIp = sender.text, !newIp.isEmpty {
+            
+            //update the IP with the user entered IP
+            if client.setServerIp(ip: newIp) {
+                        print("IP address updated successfully.")
+                    } else {
+                        print("Invalid IP address provided.")
+                    }
+                }
+    }
+    
+    
+    //Part 2: UITextFieldDelegate method to dismiss the keyboard when the user hits enter
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
     
     // MARK: View Controller Life Cycle
     override func viewDidLoad() {
@@ -75,10 +101,21 @@ class ViewController: UIViewController, ClientDelegate {
         // setup core motion handlers to start motion updates
         startMotionUpdates()
         
-        // use delegation for interacting with client 
+        // use delegation for interacting with client
         client.delegate = self
         client.updateDsid(5) // set default dsid to start with
-
+        
+        //Part 2
+        ipAddressTextField.delegate = self   // Set the view controller as the delegate for the text field
+        
+        // Add a toolbar with a done button to dismiss the number pad
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneButtonTapped))
+        toolbar.setItems([doneButton], animated: false)
+                
+        ipAddressTextField.inputAccessoryView = toolbar
     }
     
     
@@ -100,6 +137,13 @@ class ViewController: UIViewController, ClientDelegate {
     @IBAction func makeModel(_ sender: AnyObject) {
         client.trainModel()
     }
+    
+    //Part 2
+    @objc func doneButtonTapped() {
+        view.endEditing(true)
+    }
+    
+
 
 }
 
@@ -352,4 +396,5 @@ extension ViewController {
     }
 
 }
+
 
